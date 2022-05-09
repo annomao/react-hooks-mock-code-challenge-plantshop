@@ -9,7 +9,6 @@ function NewPlantForm({onAddPlant}) {
   })
   function handleSubmit(e){
     e.preventDefault()
-    console.log(formData)
     fetch("http://localhost:6001/plants",{
       method:"POST",
       headers:{
