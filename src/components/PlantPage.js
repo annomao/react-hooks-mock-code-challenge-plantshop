@@ -14,9 +14,14 @@ function PlantPage() {
     })
   },[])
 
+  function onAddPlant(plant){
+    let newPlants = [...plants,plant]
+    setPlants(newPlants)
+  }
+
   return (
     <main>
-      <NewPlantForm />
+      <NewPlantForm onAddPlant={onAddPlant}/>
       <Search />
       <PlantList plantList = {plants}/>
     </main>
