@@ -1,12 +1,22 @@
 import React, {useState} from "react";
 
-function PlantCard({plant}) {
+function PlantCard({plant, onDelete}) {
   const {name ,image ,price} = plant
 
   let [soldOut ,setSoldOut] = useState(true)
 
   function handleStockClick(){
     setSoldOut(()=> soldOut = !soldOut)
+  }
+
+  function handleDelete(){
+    fetch(`http://localhost:6001/plants/${plant.id}`,{
+      method:"DELETE"
+    })
+    .then(res => res.json())
+    .then(()=>{
+      onDelete(plant)
+    })
   }
   return (
     <li className="card">
@@ -18,6 +28,7 @@ function PlantCard({plant}) {
       ) : (
         <button onClick={handleStockClick}>Out of Stock</button>
       )}
+      <button onClick={handleDelete}>DELETE</button>
     </li>
   );
 }
